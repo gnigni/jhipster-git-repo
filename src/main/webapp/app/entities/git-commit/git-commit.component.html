@@ -1,0 +1,78 @@
+<div>
+    <h2 id="page-heading">
+        <span>Git Commits</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-git-commit" [routerLink]="['/git-commit/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Git Commit
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="gitCommits">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Hash</span></th>
+            <th><span>Commit Date</span></th>
+            <th><span>Message</span></th>
+            <th><span>Branch</span></th>
+            <th><span>Git Repo</span></th>
+            <th><span>Parent</span></th>
+            <th><span>Committer</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let gitCommit of gitCommits ;trackBy: trackId">
+                <td><a [routerLink]="['/git-commit', gitCommit.id, 'view' ]">{{gitCommit.id}}</a></td>
+                <td>{{gitCommit.hash}}</td>
+                <td>{{gitCommit.commitDate | date:'medium'}}</td>
+                <td>{{gitCommit.message}}</td>
+                <td>{{gitCommit.branch}}</td>
+                <td>
+                    <div *ngIf="gitCommit.gitRepo">
+                        <a [routerLink]="['../git-repo', gitCommit.gitRepo?.id, 'view' ]" >{{gitCommit.gitRepo?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="gitCommit.parent">
+                        <a [routerLink]="['../git-commit', gitCommit.parent?.id, 'view' ]" >{{gitCommit.parent?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="gitCommit.committer">
+                        <a [routerLink]="['../git-committer', gitCommit.committer?.id, 'view' ]" >{{gitCommit.committer?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/git-commit', gitCommit.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/git-commit', gitCommit.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'git-commit/'+ gitCommit.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

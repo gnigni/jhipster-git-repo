@@ -1,0 +1,30 @@
+{
+    "name": "Application",
+    "fields": [
+        {
+            "fieldName": "codeApplication",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "component",
+            "otherEntityName": "projectComponent",
+            "otherEntityRelationshipName": "application"
+        }
+    ],
+    "changelogDate": "20190105204342",
+    "entityTableName": "application",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

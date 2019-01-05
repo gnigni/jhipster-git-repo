@@ -1,0 +1,53 @@
+{
+    "name": "SonarComponent",
+    "fields": [
+        {
+            "fieldName": "organization",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "componentId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "componentKey",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "qualifier",
+            "fieldType": "SonarQualifier",
+            "fieldValues": "BRC,DIR,FIL,TRK,UTS"
+        },
+        {
+            "fieldName": "path",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "component",
+            "otherEntityName": "projectComponent",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "sonarComponent"
+        }
+    ],
+    "changelogDate": "20190105204347",
+    "entityTableName": "sonar_component",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

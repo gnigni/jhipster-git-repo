@@ -38,6 +38,18 @@ public class CacheConfiguration {
             cm.createCache(fr.icdc.dei.da1.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(fr.icdc.dei.da1.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(fr.icdc.dei.da1.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(fr.icdc.dei.da1.domain.Application.class.getName(), jcacheConfiguration);
+            cm.createCache(fr.icdc.dei.da1.domain.Application.class.getName() + ".components", jcacheConfiguration);
+            cm.createCache(fr.icdc.dei.da1.domain.ProjectComponent.class.getName(), jcacheConfiguration);
+            cm.createCache(fr.icdc.dei.da1.domain.GitRepo.class.getName(), jcacheConfiguration);
+            cm.createCache(fr.icdc.dei.da1.domain.GitRepo.class.getName() + ".components", jcacheConfiguration);
+            cm.createCache(fr.icdc.dei.da1.domain.GitRepo.class.getName() + ".commits", jcacheConfiguration);
+            cm.createCache(fr.icdc.dei.da1.domain.GitCommit.class.getName(), jcacheConfiguration);
+            cm.createCache(fr.icdc.dei.da1.domain.GitCommitter.class.getName(), jcacheConfiguration);
+            cm.createCache(fr.icdc.dei.da1.domain.SonarComponent.class.getName(), jcacheConfiguration);
+            cm.createCache(fr.icdc.dei.da1.domain.JenkinsFolder.class.getName(), jcacheConfiguration);
+            cm.createCache(fr.icdc.dei.da1.domain.JenkinsJob.class.getName(), jcacheConfiguration);
+            cm.createCache(fr.icdc.dei.da1.domain.JenkinsJobBuild.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

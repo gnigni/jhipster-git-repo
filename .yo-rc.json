@@ -1,0 +1,39 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "gitCompany": "",
+    "baseName": "jhipGitRepo",
+    "packageName": "fr.icdc.dei.da1",
+    "packageFolder": "fr/icdc/dei/da1",
+    "serverPort": 8080,
+    "serviceDiscoveryType": false,
+    "authenticationType": "jwt",
+    "uaaBaseName": "../uaa",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "enableSwaggerCodegen": false,
+    "messageBroker": false,
+    "buildTool": "maven",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "enableTranslation": false,
+    "nativeLanguage": "en",
+    "languages": [
+      "en"
+    ],
+    "clientFramework": "angularX",
+    "jhiPrefix": "jhi",
+    "jhipsterVersion": "5.7.2",
+    "jwtSecretKey": "YjY5ODg3ZTAwNTEzN2YyYzE1MmM4Njg4OGE5OTgwYmRmZjhmMDE2NmM5ZGUyZGUxMWQ0NDkwNzQzNGY2OTNiZTcwMmRkYzI0OTZkZjBlMTM4NjUyOTAzMzBiMjY0ZTBkMTU5ZWQ1ZDk2ZGMyNGUxYmE4NDA5ODUyMDJlZWMzNmE=",
+    "otherModules": []
+  },
+  "git-provider": "GitHub",
+  "git-company": "gnigni",
+  "repository-name": "jhipster-git-repo"
+}

@@ -1,0 +1,108 @@
+entity Application {
+	codeApplication String,
+    description String
+}
+
+entity ProjectComponent {
+	id String,
+    type ComponentType
+}
+
+enum ComponentType {
+	POM, JAR, WAR, BATCH, IHM
+}
+
+relationship OneToMany {
+	Application{component} to ProjectComponent
+}
+
+relationship OneToMany {
+	GitRepo{component} to ProjectComponent
+}
+
+relationship ManyToOne {
+	ProjectComponent{parent} to ProjectComponent
+}
+
+entity GitRepo {
+	id String,
+    localPath String,
+	remoteUrl String
+}
+
+entity GitCommit {
+	hash String,
+	commitDate Date,
+    committer Commiter,
+    message String,
+    branch String
+}
+
+relationship ManyToOne {
+	GitCommit{parent} to GitCommit
+}
+
+entity GitCommitter {
+	id String,
+    name String
+}
+
+relationship ManyToOne {
+	GitCommit{committer} to GitCommitter
+}
+
+relationship OneToMany {
+	GitRepo{commit} to GitCommit
+}
+
+entity SonarComponent {
+	organization String,
+	componentId String,
+    componentKey String,
+    name String,
+    description String,
+    qualifier SonarQualifier,
+    path String
+}
+
+relationship OneToOne {
+	SonarComponent{component} to ProjectComponent
+}
+
+entity JenkinsFolder {
+	url String
+}
+
+entity JenkinsJob {
+	url String,
+    type JenkinsJobType
+}
+
+entity JenkinsJobBuild {
+	url String,
+    state JenkinsJobBuildState
+}
+
+enum SonarQualifier {
+	BRC, DIR, FIL, TRK, UTS
+}
+
+enum JenkinsJobType {
+	INT_BUILD, INT_DEPLOY, INT_SONAR, REC_BUILD, REC_RELEASE
+}
+
+enum JenkinsJobBuildState {
+	SUCCESS, FAIL, WARN
+}
+
+relationship OneToOne {
+	JenkinsFolder{component} to ProjectComponent
+}
+
+relationship OneToOne {
+	JenkinsJob{jenkinsFolder} to JenkinsFolder
+}
+
+relationship ManyToOne {
+	JenkinsJobBuild{jenkinsJob} to JenkinsJob
+}

@@ -1,0 +1,36 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-jenkins-folder-heading">Create or edit a Jenkins Folder</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!jenkinsFolder.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="jenkinsFolder.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_url">Url</label>
+                    <input type="text" class="form-control" name="url" id="field_url"
+                        [(ngModel)]="jenkinsFolder.url" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_component">Component</label>
+                    <select class="form-control" id="field_component" name="component" [(ngModel)]="jenkinsFolder.component">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="projectComponentOption.id === jenkinsFolder.component?.id ? jenkinsFolder.component : projectComponentOption" *ngFor="let projectComponentOption of components; trackBy: trackProjectComponentById">{{projectComponentOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+{
+    "name": "GitCommit",
+    "fields": [
+        {
+            "fieldName": "hash",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "commitDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "message",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "branch",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "gitRepo",
+            "otherEntityName": "gitRepo",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "parent",
+            "otherEntityName": "gitCommit",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "committer",
+            "otherEntityName": "gitCommitter",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190105204345",
+    "entityTableName": "git_commit",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

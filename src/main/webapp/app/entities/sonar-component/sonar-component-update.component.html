@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-sonar-component-heading">Create or edit a Sonar Component</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!sonarComponent.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="sonarComponent.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_organization">Organization</label>
+                    <input type="text" class="form-control" name="organization" id="field_organization"
+                        [(ngModel)]="sonarComponent.organization" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_componentId">Component Id</label>
+                    <input type="text" class="form-control" name="componentId" id="field_componentId"
+                        [(ngModel)]="sonarComponent.componentId" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_componentKey">Component Key</label>
+                    <input type="text" class="form-control" name="componentKey" id="field_componentKey"
+                        [(ngModel)]="sonarComponent.componentKey" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="sonarComponent.name" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                        [(ngModel)]="sonarComponent.description" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_qualifier">Qualifier</label>
+                    <select class="form-control" name="qualifier" [(ngModel)]="sonarComponent.qualifier" id="field_qualifier" >
+                        <option value="BRC">BRC</option>
+                        <option value="DIR">DIR</option>
+                        <option value="FIL">FIL</option>
+                        <option value="TRK">TRK</option>
+                        <option value="UTS">UTS</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_path">Path</label>
+                    <input type="text" class="form-control" name="path" id="field_path"
+                        [(ngModel)]="sonarComponent.path" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_component">Component</label>
+                    <select class="form-control" id="field_component" name="component" [(ngModel)]="sonarComponent.component">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="projectComponentOption.id === sonarComponent.component?.id ? sonarComponent.component : projectComponentOption" *ngFor="let projectComponentOption of components; trackBy: trackProjectComponentById">{{projectComponentOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

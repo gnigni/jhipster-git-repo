@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-jenkins-job-heading">Create or edit a Jenkins Job</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!jenkinsJob.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="jenkinsJob.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_url">Url</label>
+                    <input type="text" class="form-control" name="url" id="field_url"
+                        [(ngModel)]="jenkinsJob.url" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_type">Type</label>
+                    <select class="form-control" name="type" [(ngModel)]="jenkinsJob.type" id="field_type" >
+                        <option value="INT_BUILD">INT_BUILD</option>
+                        <option value="INT_DEPLOY">INT_DEPLOY</option>
+                        <option value="INT_SONAR">INT_SONAR</option>
+                        <option value="REC_BUILD">REC_BUILD</option>
+                        <option value="REC_RELEASE">REC_RELEASE</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_jenkinsFolder">Jenkins Folder</label>
+                    <select class="form-control" id="field_jenkinsFolder" name="jenkinsFolder" [(ngModel)]="jenkinsJob.jenkinsFolder">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="jenkinsFolderOption.id === jenkinsJob.jenkinsFolder?.id ? jenkinsJob.jenkinsFolder : jenkinsFolderOption" *ngFor="let jenkinsFolderOption of jenkinsfolders; trackBy: trackJenkinsFolderById">{{jenkinsFolderOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

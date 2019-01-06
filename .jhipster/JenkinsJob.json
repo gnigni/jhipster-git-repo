@@ -1,0 +1,33 @@
+{
+    "name": "JenkinsJob",
+    "fields": [
+        {
+            "fieldName": "url",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "JenkinsJobType",
+            "fieldValues": "INT_BUILD,INT_DEPLOY,INT_SONAR,REC_BUILD,REC_RELEASE"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "jenkinsFolder",
+            "otherEntityName": "jenkinsFolder",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "jenkinsJob"
+        }
+    ],
+    "changelogDate": "20190105204349",
+    "entityTableName": "jenkins_job",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

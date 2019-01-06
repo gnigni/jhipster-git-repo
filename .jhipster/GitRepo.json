@@ -1,0 +1,36 @@
+{
+    "name": "GitRepo",
+    "fields": [
+        {
+            "fieldName": "localPath",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "remoteUrl",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "component",
+            "otherEntityName": "projectComponent",
+            "otherEntityRelationshipName": "gitRepo"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "commit",
+            "otherEntityName": "gitCommit",
+            "otherEntityRelationshipName": "gitRepo"
+        }
+    ],
+    "changelogDate": "20190105204344",
+    "entityTableName": "git_repo",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

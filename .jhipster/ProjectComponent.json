@@ -1,0 +1,39 @@
+{
+    "name": "ProjectComponent",
+    "fields": [
+        {
+            "fieldName": "type",
+            "fieldType": "ComponentType",
+            "fieldValues": "POM,JAR,WAR,BATCH,IHM"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "application",
+            "otherEntityName": "application",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "parent",
+            "otherEntityName": "projectComponent",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "gitRepo",
+            "otherEntityName": "gitRepo",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190105204343",
+    "entityTableName": "project_component",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

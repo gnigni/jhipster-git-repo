@@ -1,10 +1,12 @@
 import { IProjectComponent } from 'app/shared/model//project-component.model';
+import { IGitRepo } from 'app/shared/model//git-repo.model';
 
 export interface IApplication {
     id?: number;
     codeApplication?: string;
     description?: string;
     components?: IProjectComponent[];
+    gitRepos?: IGitRepo[];
 }
 
 export class Application implements IApplication {
@@ -12,6 +14,7 @@ export class Application implements IApplication {
         public id?: number,
         public codeApplication?: string,
         public description?: string,
-        public components?: IProjectComponent[]
+        public components?: IProjectComponent[],
+        public gitRepos?: IGitRepo[]
     ) {}
 }

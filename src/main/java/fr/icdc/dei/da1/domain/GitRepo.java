@@ -1,6 +1,7 @@
 package fr.icdc.dei.da1.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -32,9 +33,13 @@ public class GitRepo implements Serializable {
     @Column(name = "remote_url")
     private String remoteUrl;
 
+    @ManyToOne
+    @JsonIgnoreProperties("gitRepos")
+    private Application application;
+
     @OneToMany(mappedBy = "gitRepo")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<ProjectComponent> components = new HashSet<>();
+    private Set<ProjectComponent> projectComponents = new HashSet<>();
     @OneToMany(mappedBy = "gitRepo")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<GitCommit> commits = new HashSet<>();
@@ -73,29 +78,42 @@ public class GitRepo implements Serializable {
         this.remoteUrl = remoteUrl;
     }
 
-    public Set<ProjectComponent> getComponents() {
-        return components;
+    public Application getApplication() {
+        return application;
     }
 
-    public GitRepo components(Set<ProjectComponent> projectComponents) {
-        this.components = projectComponents;
+    public GitRepo application(Application application) {
+        this.application = application;
         return this;
     }
 
-    public GitRepo addComponent(ProjectComponent projectComponent) {
-        this.components.add(projectComponent);
+    public void setApplication(Application application) {
+        this.application = application;
+    }
+
+    public Set<ProjectComponent> getProjectComponents() {
+        return projectComponents;
+    }
+
+    public GitRepo projectComponents(Set<ProjectComponent> projectComponents) {
+        this.projectComponents = projectComponents;
+        return this;
+    }
+
+    public GitRepo addProjectComponent(ProjectComponent projectComponent) {
+        this.projectComponents.add(projectComponent);
         projectComponent.setGitRepo(this);
         return this;
     }
 
-    public GitRepo removeComponent(ProjectComponent projectComponent) {
-        this.components.remove(projectComponent);
+    public GitRepo removeProjectComponent(ProjectComponent projectComponent) {
+        this.projectComponents.remove(projectComponent);
         projectComponent.setGitRepo(null);
         return this;
     }
 
-    public void setComponents(Set<ProjectComponent> projectComponents) {
-        this.components = projectComponents;
+    public void setProjectComponents(Set<ProjectComponent> projectComponents) {
+        this.projectComponents = projectComponents;
     }
 
     public Set<GitCommit> getCommits() {

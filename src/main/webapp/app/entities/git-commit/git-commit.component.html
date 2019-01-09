@@ -15,7 +15,7 @@
             <thead>
             <tr>
             <th><span>ID</span></th>
-            <th><span>Hash</span></th>
+            <th><span>Git Commit Hash</span></th>
             <th><span>Commit Date</span></th>
             <th><span>Message</span></th>
             <th><span>Branch</span></th>
@@ -28,7 +28,7 @@
             <tbody>
             <tr *ngFor="let gitCommit of gitCommits ;trackBy: trackId">
                 <td><a [routerLink]="['/git-commit', gitCommit.id, 'view' ]">{{gitCommit.id}}</a></td>
-                <td>{{gitCommit.hash}}</td>
+                <td>{{gitCommit.gitCommitHash}}</td>
                 <td>{{gitCommit.commitDate | date:'medium'}}</td>
                 <td>{{gitCommit.message}}</td>
                 <td>{{gitCommit.branch}}</td>

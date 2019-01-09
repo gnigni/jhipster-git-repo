@@ -45,8 +45,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = JhipGitRepoApp.class)
 public class GitCommitResourceIntTest {
 
-    private static final String DEFAULT_HASH = "AAAAAAAAAA";
-    private static final String UPDATED_HASH = "BBBBBBBBBB";
+    private static final String DEFAULT_GIT_COMMIT_HASH = "AAAAAAAAAA";
+    private static final String UPDATED_GIT_COMMIT_HASH = "BBBBBBBBBB";
 
     private static final ZonedDateTime DEFAULT_COMMIT_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_COMMIT_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
@@ -99,7 +99,7 @@ public class GitCommitResourceIntTest {
      */
     public static GitCommit createEntity(EntityManager em) {
         GitCommit gitCommit = new GitCommit()
-            .hash(DEFAULT_HASH)
+            .gitCommitHash(DEFAULT_GIT_COMMIT_HASH)
             .commitDate(DEFAULT_COMMIT_DATE)
             .message(DEFAULT_MESSAGE)
             .branch(DEFAULT_BRANCH);
@@ -126,7 +126,7 @@ public class GitCommitResourceIntTest {
         List<GitCommit> gitCommitList = gitCommitRepository.findAll();
         assertThat(gitCommitList).hasSize(databaseSizeBeforeCreate + 1);
         GitCommit testGitCommit = gitCommitList.get(gitCommitList.size() - 1);
-        assertThat(testGitCommit.getHash()).isEqualTo(DEFAULT_HASH);
+        assertThat(testGitCommit.getGitCommitHash()).isEqualTo(DEFAULT_GIT_COMMIT_HASH);
         assertThat(testGitCommit.getCommitDate()).isEqualTo(DEFAULT_COMMIT_DATE);
         assertThat(testGitCommit.getMessage()).isEqualTo(DEFAULT_MESSAGE);
         assertThat(testGitCommit.getBranch()).isEqualTo(DEFAULT_BRANCH);
@@ -162,7 +162,7 @@ public class GitCommitResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(gitCommit.getId().intValue())))
-            .andExpect(jsonPath("$.[*].hash").value(hasItem(DEFAULT_HASH.toString())))
+            .andExpect(jsonPath("$.[*].gitCommitHash").value(hasItem(DEFAULT_GIT_COMMIT_HASH.toString())))
             .andExpect(jsonPath("$.[*].commitDate").value(hasItem(sameInstant(DEFAULT_COMMIT_DATE))))
             .andExpect(jsonPath("$.[*].message").value(hasItem(DEFAULT_MESSAGE.toString())))
             .andExpect(jsonPath("$.[*].branch").value(hasItem(DEFAULT_BRANCH.toString())));
@@ -179,7 +179,7 @@ public class GitCommitResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(gitCommit.getId().intValue()))
-            .andExpect(jsonPath("$.hash").value(DEFAULT_HASH.toString()))
+            .andExpect(jsonPath("$.gitCommitHash").value(DEFAULT_GIT_COMMIT_HASH.toString()))
             .andExpect(jsonPath("$.commitDate").value(sameInstant(DEFAULT_COMMIT_DATE)))
             .andExpect(jsonPath("$.message").value(DEFAULT_MESSAGE.toString()))
             .andExpect(jsonPath("$.branch").value(DEFAULT_BRANCH.toString()));
@@ -206,7 +206,7 @@ public class GitCommitResourceIntTest {
         // Disconnect from session so that the updates on updatedGitCommit are not directly saved in db
         em.detach(updatedGitCommit);
         updatedGitCommit
-            .hash(UPDATED_HASH)
+            .gitCommitHash(UPDATED_GIT_COMMIT_HASH)
             .commitDate(UPDATED_COMMIT_DATE)
             .message(UPDATED_MESSAGE)
             .branch(UPDATED_BRANCH);
@@ -220,7 +220,7 @@ public class GitCommitResourceIntTest {
         List<GitCommit> gitCommitList = gitCommitRepository.findAll();
         assertThat(gitCommitList).hasSize(databaseSizeBeforeUpdate);
         GitCommit testGitCommit = gitCommitList.get(gitCommitList.size() - 1);
-        assertThat(testGitCommit.getHash()).isEqualTo(UPDATED_HASH);
+        assertThat(testGitCommit.getGitCommitHash()).isEqualTo(UPDATED_GIT_COMMIT_HASH);
         assertThat(testGitCommit.getCommitDate()).isEqualTo(UPDATED_COMMIT_DATE);
         assertThat(testGitCommit.getMessage()).isEqualTo(UPDATED_MESSAGE);
         assertThat(testGitCommit.getBranch()).isEqualTo(UPDATED_BRANCH);

@@ -13,6 +13,12 @@
                 <dd>
                     <span>{{gitRepo.remoteUrl}}</span>
                 </dd>
+                <dt><span>Application</span></dt>
+                <dd>
+                    <div *ngIf="gitRepo.application">
+                        <a [routerLink]="['/application', gitRepo.application?.id, 'view']">{{gitRepo.application?.id}}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

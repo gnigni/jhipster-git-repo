@@ -50,6 +50,8 @@ public class CacheConfiguration {
             cm.createCache(fr.icdc.dei.da1.domain.JenkinsFolder.class.getName(), jcacheConfiguration);
             cm.createCache(fr.icdc.dei.da1.domain.JenkinsJob.class.getName(), jcacheConfiguration);
             cm.createCache(fr.icdc.dei.da1.domain.JenkinsJobBuild.class.getName(), jcacheConfiguration);
+            cm.createCache(fr.icdc.dei.da1.domain.Application.class.getName() + ".gitRepos", jcacheConfiguration);
+            cm.createCache(fr.icdc.dei.da1.domain.GitRepo.class.getName() + ".projectComponents", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

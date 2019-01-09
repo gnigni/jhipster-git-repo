@@ -2,7 +2,7 @@
     "name": "GitCommit",
     "fields": [
         {
-            "fieldName": "hash",
+            "fieldName": "gitCommitHash",
             "fieldType": "String"
         },
         {

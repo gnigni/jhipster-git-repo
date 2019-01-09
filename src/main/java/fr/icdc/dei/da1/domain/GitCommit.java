@@ -25,8 +25,8 @@ public class GitCommit implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "jhi_hash")
-    private String hash;
+    @Column(name = "git_commit_hash")
+    private String gitCommitHash;
 
     @Column(name = "commit_date")
     private ZonedDateTime commitDate;
@@ -58,17 +58,17 @@ public class GitCommit implements Serializable {
         this.id = id;
     }
 
-    public String getHash() {
-        return hash;
+    public String getGitCommitHash() {
+        return gitCommitHash;
     }
 
-    public GitCommit hash(String hash) {
-        this.hash = hash;
+    public GitCommit gitCommitHash(String gitCommitHash) {
+        this.gitCommitHash = gitCommitHash;
         return this;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setGitCommitHash(String gitCommitHash) {
+        this.gitCommitHash = gitCommitHash;
     }
 
     public ZonedDateTime getCommitDate() {
@@ -174,7 +174,7 @@ public class GitCommit implements Serializable {
     public String toString() {
         return "GitCommit{" +
             "id=" + getId() +
-            ", hash='" + getHash() + "'" +
+            ", gitCommitHash='" + getGitCommitHash() + "'" +
             ", commitDate='" + getCommitDate() + "'" +
             ", message='" + getMessage() + "'" +
             ", branch='" + getBranch() + "'" +

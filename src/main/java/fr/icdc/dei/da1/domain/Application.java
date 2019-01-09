@@ -35,6 +35,9 @@ public class Application implements Serializable {
     @OneToMany(mappedBy = "application")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ProjectComponent> components = new HashSet<>();
+    @OneToMany(mappedBy = "application")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<GitRepo> gitRepos = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -93,6 +96,31 @@ public class Application implements Serializable {
 
     public void setComponents(Set<ProjectComponent> projectComponents) {
         this.components = projectComponents;
+    }
+
+    public Set<GitRepo> getGitRepos() {
+        return gitRepos;
+    }
+
+    public Application gitRepos(Set<GitRepo> gitRepos) {
+        this.gitRepos = gitRepos;
+        return this;
+    }
+
+    public Application addGitRepo(GitRepo gitRepo) {
+        this.gitRepos.add(gitRepo);
+        gitRepo.setApplication(this);
+        return this;
+    }
+
+    public Application removeGitRepo(GitRepo gitRepo) {
+        this.gitRepos.remove(gitRepo);
+        gitRepo.setApplication(null);
+        return this;
+    }
+
+    public void setGitRepos(Set<GitRepo> gitRepos) {
+        this.gitRepos = gitRepos;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

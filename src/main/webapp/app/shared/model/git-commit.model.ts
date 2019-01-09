@@ -5,7 +5,7 @@ import { IGitCommitter } from 'app/shared/model//git-committer.model';
 
 export interface IGitCommit {
     id?: number;
-    hash?: string;
+    gitCommitHash?: string;
     commitDate?: Moment;
     message?: string;
     branch?: string;
@@ -17,7 +17,7 @@ export interface IGitCommit {
 export class GitCommit implements IGitCommit {
     constructor(
         public id?: number,
-        public hash?: string,
+        public gitCommitHash?: string,
         public commitDate?: Moment,
         public message?: string,
         public branch?: string,

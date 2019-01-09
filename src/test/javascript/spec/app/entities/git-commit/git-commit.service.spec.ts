@@ -70,7 +70,7 @@ describe('Service Tests', () => {
             it('should update a GitCommit', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        hash: 'BBBBBB',
+                        gitCommitHash: 'BBBBBB',
                         commitDate: currentDate.format(DATE_TIME_FORMAT),
                         message: 'BBBBBB',
                         branch: 'BBBBBB'
@@ -95,7 +95,7 @@ describe('Service Tests', () => {
             it('should return a list of GitCommit', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        hash: 'BBBBBB',
+                        gitCommitHash: 'BBBBBB',
                         commitDate: currentDate.format(DATE_TIME_FORMAT),
                         message: 'BBBBBB',
                         branch: 'BBBBBB'

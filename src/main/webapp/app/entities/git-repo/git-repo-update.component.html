@@ -20,6 +20,13 @@
                         [(ngModel)]="gitRepo.remoteUrl" />
                 </div>
 
+                <div class="form-group">
+                    <label class="form-control-label" for="field_application">Application</label>
+                    <select class="form-control" id="field_application" name="application" [(ngModel)]="gitRepo.application" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="applicationOption.id === gitRepo.application?.id ? gitRepo.application : applicationOption" *ngFor="let applicationOption of applications; trackBy: trackApplicationById">{{applicationOption.id}}</option>
+                    </select>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

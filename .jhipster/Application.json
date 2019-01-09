@@ -16,6 +16,12 @@
             "relationshipName": "component",
             "otherEntityName": "projectComponent",
             "otherEntityRelationshipName": "application"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "gitRepo",
+            "otherEntityName": "gitRepo",
+            "otherEntityRelationshipName": "application"
         }
     ],
     "changelogDate": "20190105204342",

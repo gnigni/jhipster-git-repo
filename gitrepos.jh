@@ -16,10 +16,6 @@ relationship OneToMany {
 	Application{component} to ProjectComponent
 }
 
-relationship OneToMany {
-	GitRepo{component} to ProjectComponent
-}
-
 relationship ManyToOne {
 	ProjectComponent{parent} to ProjectComponent
 }
@@ -30,8 +26,16 @@ entity GitRepo {
 	remoteUrl String
 }
 
+relationship OneToMany {
+	GitRepo{projectComponent} to ProjectComponent
+}
+
+relationship OneToMany {
+	Application{gitRepo} to GitRepo
+}
+
 entity GitCommit {
-	hash String,
+	gitCommitHash String,
 	commitDate ZonedDateTime,
     message String,
     branch String

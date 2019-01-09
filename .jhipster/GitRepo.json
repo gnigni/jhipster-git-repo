@@ -12,8 +12,14 @@
     ],
     "relationships": [
         {
+            "relationshipName": "application",
+            "otherEntityName": "application",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
             "relationshipType": "one-to-many",
-            "relationshipName": "component",
+            "relationshipName": "projectComponent",
             "otherEntityName": "projectComponent",
             "otherEntityRelationshipName": "gitRepo"
         },

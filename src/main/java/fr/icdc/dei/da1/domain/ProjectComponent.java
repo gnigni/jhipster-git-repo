@@ -39,7 +39,7 @@ public class ProjectComponent implements Serializable {
     private ProjectComponent parent;
 
     @ManyToOne
-    @JsonIgnoreProperties("components")
+    @JsonIgnoreProperties("projectComponents")
     private GitRepo gitRepo;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

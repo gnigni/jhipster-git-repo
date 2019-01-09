@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { JhiAlertService } from 'ng-jhipster';
 
 import { IGitRepo } from 'app/shared/model/git-repo.model';
 import { GitRepoService } from './git-repo.service';
+import { IApplication } from 'app/shared/model/application.model';
+import { ApplicationService } from 'app/entities/application';
 
 @Component({
     selector: 'jhi-git-repo-update',
@@ -14,13 +17,26 @@ export class GitRepoUpdateComponent implements OnInit {
     gitRepo: IGitRepo;
     isSaving: boolean;
 
-    constructor(protected gitRepoService: GitRepoService, protected activatedRoute: ActivatedRoute) {}
+    applications: IApplication[];
+
+    constructor(
+        protected jhiAlertService: JhiAlertService,
+        protected gitRepoService: GitRepoService,
+        protected applicationService: ApplicationService,
+        protected activatedRoute: ActivatedRoute
+    ) {}
 
     ngOnInit() {
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ gitRepo }) => {
             this.gitRepo = gitRepo;
         });
+        this.applicationService.query().subscribe(
+            (res: HttpResponse<IApplication[]>) => {
+                this.applications = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
     }
 
     previousState() {
@@ -47,5 +63,13 @@ export class GitRepoUpdateComponent implements OnInit {
 
     protected onSaveError() {
         this.isSaving = false;
+    }
+
+    protected onError(errorMessage: string) {
+        this.jhiAlertService.error(errorMessage, null, null);
+    }
+
+    trackApplicationById(index: number, item: IApplication) {
+        return item.id;
     }
 }
